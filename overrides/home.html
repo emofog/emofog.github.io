@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+
+<!-- 替换顶部导航区域（tabs），插入自定义 Hero -->
+{% block tabs %}
+
+  <!-- 全屏 Hero 区域 -->
+  <section class="md-hero md-hero--fullscreen">
+    <div class="md-grid md-hero__grid">
+      <div class="md-hero__content">
+        {{ page.content }}
+      </div>
+    </div>
+
+    <!-- 内联样式 -->
+    <style>
+      /* ==================== 全局样式重置 ==================== */
+      html, body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        height: 100%;
+      }
+
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+
+      /* ==================== 隐藏主题切换按钮 ==================== */
+      .md-header__button[title*="切换到日间模式"],
+      .md-header__button[title*="切换到夜间模式"] {
+        display: none !important;
+      }
+
+      /* ==================== 全屏 Hero 样式 ==================== */
+      .md-hero--fullscreen {
+        height: 100vh;
+        background-image: url("{{ 'assets/images/hero.jpg' | url }}");
+        background-size: cover;
+        background-position: center;
+        position: relative;
+      }
+
+      @supports (height: 100svh) {
+        .md-hero--fullscreen {
+          height: 100svh;
+        }
+      }
+
+      /* ==================== Grid 居中内容 ==================== */
+      .md-hero__grid {
+        height: 80%;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        grid-template-areas: "content";
+        justify-items: center;
+        align-items: center;
+        padding: 2rem;
+      }
+
+      /* ==================== 响应式字体大小 (使用 clamp) ==================== */
+      .md-hero__content {
+        grid-area: content;
+        text-align: left;
+        width: 100%;
+        /* 响应式基础字体大小 */
+        font-size: clamp(1.1rem, 2vw, 1.4rem);
+        line-height: 1.6;
+        /* 文字颜色 */
+        color: black;
+      }
+
+      /* ==================== 按钮与文字左对齐 ==================== */
+      .md-hero__content .md-button,
+      .md-hero__content a {
+        margin: 0 !important;
+        border: none !important;
+        padding: 0 !important;
+      }
+      
+      /* 隐藏锚点链接 */
+      .md-hero__content .headerlink {
+        display: none !important;
+      }
+
+      /* 响应式标题字体 */
+      .md-hero__content h1 {
+        font-size: clamp(2rem, 5vw, 4rem);
+        margin-bottom: 1.5rem;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+
+      .md-hero__content h2 {
+        font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+        margin-bottom: 1rem;
+        font-weight: 600;
+        line-height: 1.3;
+      }
+
+      .md-hero__content h3 {
+        font-size: clamp(1.3rem, 3vw, 2rem);
+        margin-bottom: 0.8rem;
+        font-weight: 600;
+      }
+
+      /* 响应式段落字体 */
+      .md-hero__content p {
+        font-size: clamp(1rem, 2vw, 1.3rem);
+        margin-bottom: 1rem;
+        line-height: 1.7;
+      }
+
+      /* 响应式小字字体 */
+      .md-hero__content small {
+        font-size: clamp(0.8rem, 1.5vw, 1rem);
+      }
+
+      /* 响应式按钮字体 */
+      .md-hero__content a,
+      .md-hero__content .md-button {
+        font-size: clamp(1rem, 2vw, 1.2rem);
+        padding: clamp(0.6rem, 2vw, 1rem) clamp(1.2rem, 3vw, 2rem);
+        display: inline-block;
+        text-decoration: none;
+        border-radius: 4px;
+        margin: 0.5rem;
+      }
+
+      /* ==================== 响应式设计 ==================== */
+      @media (max-width: 768px) {
+        .md-hero--fullscreen {
+          height: 100vh;
+        }
+
+        .md-hero__grid {
+          padding: 1rem;
+        }
+
+        /* 在小屏幕上可以微调 */
+        .md-hero__content h1 {
+          margin-bottom: 1rem;
+        }
+
+        .md-hero__content p {
+          margin-bottom: 0.8rem;
+        }
+      }
+
+      /* ==================== 超小屏幕优化 ==================== */
+      @media (max-width: 480px) {
+        .md-hero__grid {
+          padding: 0.8rem;
+        }
+
+        .md-hero__content {
+          max-width: 90%;
+        }
+      }
+    </style>
+  </section>
+
+{% endblock %}
+
+<!-- 清空主内容与页脚 -->
+{% block content %}{% endblock %}
+{% block footer %}{% endblock %}

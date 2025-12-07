@@ -1,0 +1,90 @@
+# Site Information
+site_name: "全麦面包的小站"
+site_url: https://emofog.github.io/
+site_author: emofog
+# Repository Information
+repo_name: emofog/@〃
+repo_url: https://github.com/emofog/emofog.github.io
+
+# Navigation Config
+nav:
+  - 🏠 主页: 
+    - 🏠 主页: index.md
+    - 🔗 朋友们: links.md
+    - ❤️ 关于我: about.md
+  - 📚 课程笔记:
+      - note/index.md
+  - 📜 论文阅读:
+        - paper/index.md
+        - paper/beat.md
+  - 🥘 西班牙海鲜饭:
+        - misc/index.md
+
+
+
+# Theme Config
+theme:
+  name: material
+  language: zh
+  custom_dir: overrides
+  icon:
+    logo: octicons/command-palette-16
+  font:
+    text: Roboto
+    code: Roboto Mono
+  palette:
+    # 夜间模式作为默认主题（放在第一位）
+    - scheme: slate                          # 深色主题
+      primary: black                         # 主色调：黑色
+      accent: indigo                         # 强调色：靛蓝色
+      toggle:
+        icon: octicons/sun-16                # 图标显示为太阳（表示当前是夜间，点击切换到日间）
+        name: 切换到日间模式                  # 提示文字
+
+    # 日间模式作为备选
+    - scheme: default                        # 浅色主题
+      primary: cyan                          # 主色调：青色
+      accent: blue                           # 强调色：蓝色
+      toggle:
+        icon: octicons/moon-16               # 图标显示为月亮（表示当前是日间，点击切换到夜间）
+        name: 切换到夜间模式                  # 提示文字
+
+  features:
+    - content.code.annotate
+    - content.code.copy
+    # - navigation.instant # This will cause LaTeX render fail at the first try.
+    - navigation.tracking
+    - navigation.tabs
+    # - navigation.tabs.sticky
+    - navigation.indexes
+    - navigation.top
+    - search.highlight
+    - search.share
+    # - navigation.prune
+
+# 拓展
+markdown_extensions:
+  - pymdownx.emoji
+  - admonition
+  - attr_list           # 属性列表 { .class #id }
+  - md_in_html          # HTML 内嵌 Markdown
+  - pymdownx.superfences: # 代码块增强
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed
+  - pymdownx.details
+  - pymdownx.arithmatex:
+      generic: true
+  - toc:
+      permalink: true        # 显示锚点链接
+      toc_depth: 3           # 目录深度（支持 h1~h3）
+      permalink_title: "Link to this section"  # 鼠标悬停提示
+
+# js
+extra_javascript:
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+  - https://cdn.jsdelivr.net/npm/mermaid@11.9.0/dist/mermaid.min.js
