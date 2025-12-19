@@ -3,10 +3,10 @@ home: true
 template: home.html
 ---
 
-## 🏠 (◕‿◕)✨ 
+## 🏠 (◕‿◕)
 
-这里是全麦面包的个人站点哦
+<span id="dynamic-welcome"></span>
 
-[🔗 朋友们](links.md){ .md-button }
+[📓 博客](/blog/){ .md-button }
 &nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
-[❤️ 关于我](about.md){ .md-button }
+[🔗 友链](links.md){ .md-button }
