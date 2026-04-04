@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="GLEAM: Learning Generalizable Exploration Policy for Active Mapping in Complex 3D Indoor Scenes">
+  <meta name="keywords" content="Active Mapping, Next-Best-View, Exploration Policy">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- <style>
+    h1 {
+      color: #8C1515;
+    }
+  </style> -->
+  <title>GLEAM: Learning Generalizable Exploration Policy for Active Mapping in Complex 3D Indoor Scenes</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <!-- GoogleAPI
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">-->
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+
+
+
+
+
+
+
+
+<body>
+
+
+<!-- <div class="full-page-image">
+  <video id="bg-video" autoplay loop muted playsinline>
+      <source src="assets/videos/full_screen.mp4" type="video/mp4">
+  </video>
+  <div class="overlay"></div>
+  <div class="content" style="padding: 0 20px">
+      <h1>BEHAVIOR Robot Suite: Streamlining Real-World Whole-Body Manipulation for Everyday Household Activities</h1>
+  </div>
+</div> -->
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <!-- Title -->
+          <!-- <h1 class="title is-1 publication-title">GLEAM: Learning Generalizable Exploration Policy for Active Mapping in Complex 3D Indoor Scenes</h1> -->
+          <!-- <h1 class="title is-1 publication-title" style="color: #8C1515; line-height: 1.1">
+          GLEAM: Learning Generalizable Exploration Policy for Active Mapping in Complex 3D Indoor Scenes</h1> -->
+
+          <h1 class="title is-1 publication-title" style="color: #8C1515; 
+          letter-spacing: -0.02em;
+          line-height: 1.3;
+          font-size: 3.0rem;
+          margin-left: -35.0%;
+          margin-right: -35.0%;">
+          GLEAM: Learning Generalizable Exploration Policy for Active Mapping <br> in Complex 3D Indoor Scenes
+          </h1>
+
+          <div class="conference-title" style="
+              text-align: center;
+              font-weight: bold;
+              font-size: 1.5rem;
+              margin-top: -1rem;
+              margin-bottom: 0rem;
+              letter-spacing: -0.01em;
+            ">
+            ICCV 2025
+          </div>
+          <!-- <h2 class="subtitle is-3" style="margin-bottom: 0;">CVPR 2024</h2> -->
+          <!-- <span class="text-border-title" style="font-size: 2em;">ICCV 2025</span> -->
+
+          <!-- Authors -->
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><a href="https://xiao-chen.tech/" target="_blank">Xiao Chen</a><sup>1,2</sup>, </span>
+            <span class="author-block"><a href="https://tai-wang.github.io/" target="_blank">Tai Wang</a><sup>2</sup>, </span>
+            <span class="author-block"><a href="https://quanyili.github.io/" target="_blank">Quanyi Li</a><sup>2</sup>, </span>
+            <span class="author-block"><a href="https://taohuang13.github.io/" target="_blank">Tao Huang</a><sup>2</sup>, </span>
+            <span class="author-block"><a href="https://oceanpang.github.io/" target="_blank">Jiangmiao Pang</a><sup>2</sup>, </span>
+            <span class="author-block"><a href="https://tianfan.info/" target="_blank">Tianfan Xue</a><sup>1,2</sup></span>
+          </div>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup> Multimedia Laboratory, The Chinese University of Hong Kong</span><br>
+            <span class="author-block"><sup>2</sup> Shanghai AI Laboratory</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+
+              <!-- arXiv Link. -->
+              <span class="link-block">
+                <a href="https://arxiv.org/abs/2505.20294"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="https://github.com/zjwzcx/GLEAM" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+
+              <!-- Data Link. -->
+              <span class="link-block">
+                <a href="https://github.com/zjwzcx/GLEAM/tree/master/data_gleam" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fa fa-database"></i>
+                  </span>
+                  <span>Data</span>
+                  </a>
+              </span>
+
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://www.youtube.com/watch?v=hOk8TJiotag&ab_channel=XiaoChen"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video (YouTube)</span>
+                </a>
+              </span>
+
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://www.bilibili.com/video/BV1n2jqzeE6N/?spm_id_from=333.337.search-card.all.click&vd_source=03a8e4a181629720c5623ae40bda6ea9"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>Video (Bilibili)</span>
+                </a>
+              </span>
+
+              <!-- Video Link. -->
+              <span class="link-block">
+                <a href="https://www.bilibili.com/video/BV1oPaDzeEfo/?spm_id_from=333.337.search-card.all.click&vd_source=03a8e4a181629720c5623ae40bda6ea9"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-youtube"></i>
+                  </span>
+                  <span>中文解读</span>
+                </a>
+              </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- <hr width="100%" size="2"> -->
+
+
+
+<!-- <section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <hr class="text-border-line">
+    </div>
+    <div class="hero-body">
+      <video id="teaser"               
+               controls
+               muted
+               preload
+               playsinline height="100%">
+        <source src="./static/videos/gennbv_v9_comp.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section> -->
+
+
+
+
+
+
+<hr width="100%" size="2">
+
+
+
+
+<!-- Video -->
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <hr class="text-border-line">
+    </div>
+    <div class="hero-body">
+      <video id="teaser"               
+               controls
+               muted
+               preload
+               playsinline height="100%"
+               class="rounded-video">
+        <source src="./static/videos/GLEAM_Demo_Comp.mp4"
+                type="video/mp4">
+      </video>
+      <!-- <p class="video-sound-reminder has-text-centered">
+        🔇 Demo video muted by default - click speaker icon to unmute
+      </p> -->
+    </div>
+  </div>
+</section>
+
+
+<!-- Teaser -->
+<section class="section">
+  <div class="container is-max-desktop">
+
+    <div class="content has-text-centered">
+      <img width="120%" src="./static/images/Fig_Teaser.png"">
+    </div>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <div class="content has-text-justified">
+          We introduce <strong style="color: #8C1515;">GLEAM</strong>, a unified generalizable exploration policy for active mapping in complex 3D indoor scenes, trained and evaluated on 1,152 diverse scenes from our benchmark <strong style="color: #8C1515;">GLEAM-Bench</strong>.
+          Our cross-dataset generalization to an unseen real-scan scene Matterport3D achieves <u>83.67%</u> coverage using 40 keyframes, <strong>without fine-tuning and prior knowledge</strong>.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <h1 class="title is-1" style="color: #8C1515;">Generalizability Evaluation</h1>
+    </div>
+
+    <!-- <h2 class="title is-2 has-text-centered">Evaluate on unseen scenes from ProcTHOR, HSSD, Gibson, and Matterport3D</h2> -->
+    <!-- <h3 class="title is-3 has-text-centered">Active Mapping Process</h3> -->
+    <h3 class="title is-3 has-text-centered">Active Mapping Process</h3>
+
+    <div class="container is-max-fullhd" id="indoor">
+      <!-- <h2 class="title is-3 has-text-centered">Subtitle Here</h2> -->
+      <div class="columns is-centered">
+
+        <!-- first column -->
+        <div class="column">
+          <!-- <h2 class="title is-4 has-text-centered">HSSD</h2> -->
+          <div class="columns is-centered">
+            <div class="column content has-text-centered">
+              <video  controls playsinline height="100%" class="rounded-video">
+                <source src="./static/videos/hssd_vis_1.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <h2 class="title is-4 has-text-centered">HSSD</h2>
+    
+          <!-- <h2 class="title is-4 has-text-centered">ProcTHOR</h2> -->
+          <div class="columns is-centered">
+            <div class="column content has-text-centered">
+              <video  controls playsinline height="100%" class="rounded-video">
+                <source src="./static/videos/procthor_vis_1.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <h2 class="title is-4 has-text-centered">ProcTHOR</h2>
+
+        </div>
+    
+        <!-- second column -->
+        <div class="column">
+          <!-- <h2 class="title is-4 has-text-centered">Matterport3D</h2> -->
+          <div class="columns is-centered">
+            <div class="column content has-text-centered">
+              <video  controls playsinline height="100%" class="rounded-video">
+                <source src="./static/videos/mp3d_vis_1.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <h2 class="title is-4 has-text-centered">Matterport3D</h2>
+    
+
+          <div class="columns is-centered">
+            <div class="column content has-text-centered">
+              <video  controls playsinline height="100%" class="rounded-video">
+                <source src="./static/videos/mp3d_vis_2.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <h2 class="title is-4 has-text-centered">Matterport3D</h2>
+
+        </div>
+    
+        <!-- third column -->
+        <div class="column">
+          <!-- <h2 class="title is-4 has-text-centered">Gibson</h2> -->
+          <div class="columns is-centered">
+            <div class="column content has-text-centered">
+              <video  controls playsinline height="100%" class="rounded-video">
+                <source src="./static/videos/gibson_vis_1.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <h2 class="title is-4 has-text-centered">Gibson</h2>
+
+
+          <div class="columns is-centered">
+            <div class="column content has-text-centered">
+              <video  controls playsinline height="100%" class="rounded-video">
+                <source src="./static/videos/procthor_vis_2.mp4"
+                        type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <h2 class="title is-4 has-text-centered">ProcTHOR</h2>
+
+        </div>
+
+      </div>
+    </div>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <div class="content has-text-justified">
+          To demonstrate the superior generalizability of GLEAM, We evaluate it on 128 unseen diverse scenes from ProcTHOR, HSSD, Gibson, and Matterport3D (cross-dataset). Some representative scenes are shown above.
+        </div>
+      </div>
+    </div>
+
+    <hr width="100%" size="2">
+
+    <h3 class="title is-3 has-text-centered">Performance Comparison</h3>
+    <div class="content has-text-centered">
+      <img width="150%" src="./static/images/Fig_Vis.png">
+    </div>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <div class="content has-text-justified">
+          The visualization results of ANM, OccAnt, and GLEAM on three representative unseen complex scenes from the test set of GLEAM-Bench. The methods share the same random initial poses for each scene.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- Abstract -->
+<hr width="100%" size="2">
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h1 class="title is-1" style="color: #8C1515;">Abstract</h1>
+        <div class="content has-text-justified">
+            Generalizable active mapping in complex unknown environments remains a critical challenge for mobile robots. 
+            Existing methods, constrained by insufficient training data and conservative exploration strategies, exhibit limited generalizability across scenes with diverse layouts and complex connectivity. 
+            To enable scalable training and reliable evaluation, we introduce <strong style="color: #8C1515;">GLEAM-Bench</strong>, the first large-scale benchmark designed for generalizable active mapping with 1,152 diverse 3D scenes from synthetic and real-scan datasets. 
+            Building upon this foundation, we propose <strong style="color: #8C1515;">GLEAM</strong>, a unified <u>g</u>enera<u>l</u>izable <u>e</u>xploration policy for <u>a</u>ctive <u>m</u>apping. 
+            Its superior generalizability comes mainly from our semantic representations, long-term navigable goals, and randomized strategies. 
+            It significantly outperforms state-of-the-art methods, achieving 66.50% coverage (+9.49%) with efficient trajectories and improved mapping accuracy on 128 unseen complex scenes.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- GLEAM-Bench -->
+<hr width="100%" size="2">
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <h1 class="title is-1" style="color: #8C1515;">GLEAM-Bench</h1>
+    </div>
+    <br>
+
+    <div class="columns is-centered has-text-centered">
+      <!-- <h5 class="title is-5">A benchmark for active mapping-oriented generalizable exploration in complex 3D indoor scenes</h5> -->
+      <h4 class="title is-4">A benchmark for generalizable active mapping policies in complex 3D indoor scenes</h4> <br>
+    </div>
+
+
+    <div class="content has-text-centered">
+      <img width="140%" src="./static/images/Fig_Bench.png">
+    </div>
+    <!-- <div class="content has-text-centered">
+      <img width="50%" src="./static/images/gleam_bench.gif">
+    </div> -->
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <div class="content has-text-justified">
+          <b>- Table</b>: The data sources for existing active mapping methods, with limited high-quality scenes employed in prior works. <br> <!-- "<b>*</b>": ProcTHOR-10K contains exclusively layout JSONs rather than directly usable 3D meshes.<br> -->
+          <b>- Figure</b>: The distribution of 1,152 scenes by the number of rooms in GLEAM-Bench.<br>
+          <b>- Overview</b>: These curated scene meshes are characterized by near-watertight geometry, diverse floorplan (≥10 types), and complex interconnectivity. We unify these multi-source datasets through filtering, geometric repair, and task-oriented preprocessing. 
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- GLEAM -->
+<hr width="100%" size="2">
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <h1 class="title is-1" style="color: #8C1515;">GLEAM</h1>
+    </div>
+    <br>
+
+    <div class="columns is-centered has-text-centered">
+      <!-- <h4 class="title is-4">A unified policy achieves 68.16% coverage (+11.41%) with efficient trajectories <br> across 128 unseen complex scenes from GLEAM-Bench.</h4> <br> -->
+      <h4 class="title is-4">A unified policy explores 66.50% areas (+9.49%) with efficient trajectories <br> across 128 unseen complex scenes.</h4> <br>
+    </div>
+    <div class="content has-text-centered">
+      <img width="160%" src="./static/images/Fig_Method.png">
+    </div>
+
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <div class="content has-text-justified">
+          The overview of our framework. Trained on 1,024 diverse indoor scenes, GLEAM processes depth observations and agents' poses to iteratively update a global map. Then an egocentric map is extracted and augmented with exploration frontiers to capture semantic exploration cues. We employ a lightweight Transformer encoder to analyze the egocentric map and trajectory history for long-term goal prediction. The reward function of coverage is computed by the global map and ground-truth occupancy map.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Quantitative Results -->
+<hr width="100%" size="2">
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <h1 class="title is-1" style="color: #8C1515;">Quantitative Results</h1>
+    </div>
+
+    <div class="content has-text-centered">
+      <img width="100%" src="./static/images/Exp_Main.png"">
+    </div>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <div class="content has-text-justified">
+          The <b>generalization</b> results of exploration policies for active mapping on 128 unseen complex indoor scenes from our GLEAM-Bench, including two synthetic datasets (ProcTHOR, HSSD) and two real-scan datasets (Gibson, Matterport3D).
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Ablation Study -->
+<!-- <hr width="100%" size="2">
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <h1 class="title is-1" style="color: #8C1515;">Ablation Study</h1>
+    </div>
+
+
+    <div class="content has-text-centered">
+      <img width="60%" src="./static/images/Exp_Abl_Tech.png"">
+    </div>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          Ablation studies of the scene representations and training strategies. The <b>bold</b> lines indicate the optimal designs, which are proposed by us and adopted in our framework.
+        </div>
+      </div>
+    </div>
+
+
+    <div class="content has-text-centered">
+      <img width="70%" src="./static/images/Exp_Abl_Scaling.png"">
+    </div>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <div class="content has-text-justified">
+          Ablation studies of the number of training scenes. We sample a proportionally reduced number of scenes from the complete 1024 training scenes to demonstrate the significance of the quantity and diversity of training scenes.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section> -->
+
+
+
+
+<!-- 
+
+<hr width="100%" size="2">
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-full">
+        <div class="content has-text-justified">
+          Thanks for your attention! If you have any questions or suggestions, please feel free to contact us (cx123@ie.cuhk.edu.hk). More details can be found in our paper (TODO) and code repository (TODO).
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+
+
+
+
+
+<hr width="100%" size="2">
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title" style="color: #8C1515;">Citation</h2>
+    If you find this project helpful, please cite us:
+    <pre><code>
+      @article{chen2025gleam,
+        title={GLEAM: Learning Generalizable Exploration Policy for Active Mapping in Complex 3D Indoor Scenes},
+        author={Chen, Xiao and Wang, Tai and Li, Quanyi and Huang, Tao and Pang, Jiangmiao and Xue, Tianfan},
+        journal={arXiv preprint arXiv:2505.20294},
+        year={2025}
+      }
+    </code></pre>
+    <br>
+    Thanks for your attention! If you have any questions or suggestions, please feel free to contact us (cx123@ie.cuhk.edu.hk). 
+    <br>
+    <br>
+    <b>More details and results can be found in our <a href="https://arxiv.org/abs/2505.20294">paper</a> and <a href="https://github.com/zjwzcx/GLEAM">code repository</a> :)</b>
+  </div>
+</section>
+
+
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <h3 class="title is-3">Acknowledgement</h2>
+    <div class="content has-text-justified">
+      <p>
+        We extend our sincere gratitude to Yaokun Li, Chenjian Gao, and Ruikang Li for their insightful advice about visualization.
+      </p>
+    </div>
+  </div>
+</section> -->
+
+
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+
+      <div class="content">
+
+        <!-- <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=a&t=tt&d=_Oc9F3kg19qBNmKgX28mdlmSyRKP3q24f-fNiCZ4qaE'></script> -->
+        <script type='text/javascript' id='clustrmaps' src='//cdn.clustrmaps.com/map_v2.js?cl=ffffff&w=800&t=tt&d=nSvsXJUWs6OEhW9xrliE4cFXJjS3hSP9uriS-2fr894&cmn=ff0000&cmo=ff0000'></script>
+
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-full">
+            <div class="content has-text-justified">
+              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template/">Template</a>, which was adopted from the <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> project page.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
